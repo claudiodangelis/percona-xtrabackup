@@ -28,20 +28,22 @@ ENV BUILD_DEPS=" \
     curl-dev \
     cppunit-dev \
     libtool \
-    libgcrypt-dev \
     libaio-dev \
     libev-dev \
     libressl-dev \
     libc-dev \
     linux-headers \
     musl-dev \
-    mysql-client \
     ncurses-dev \
+    mysql-client \
     zlib-dev"
+ENV RUN_DEPS=" \
+    libgcrypt-dev"
 
 # Install required packages
 RUN apk -U upgrade && apk add \
     ${BUILD_DEPS} \
+    ${RUN_DEPS} \
     bash \
     ca-certificates \
     coreutils \
