@@ -62,15 +62,15 @@ RUN apk -U upgrade && apk add \
     && wget -qO- https://git.cocoastorm.com/khoa/qpress/archive/1.0.tar.gz | tar xz --strip 1 \
     && make -j ${NB_CORES} \
     && mv qpress /usr/bin \
-    
+
     # Compile and Install Percona XtraBackup
     && mkdir -p /tmp/xtrabackup && cd /tmp/xtrabackup \
     && wget -qO- https://github.com/khoanguyen96/percona-xtrabackup/archive/hotfix.tar.gz | tar xz --strip 1 \
     && cmake -DBUILD_CONFIG=xtrabackup_release -DWITH_MAN_PAGES=off && make -j ${NB_CORES} && make install \
 
     # Copy over compiled binaries
-    && cp -r /usr/local/xtrabackup/bin /usr/bin \
-    && chmod -R +x /usr/bin \
+    && cp -r /usr/local/xtrabackup/bin/* /usr/bin \
+    && chmod -R +x /usr/bin/* \
 
     # Generate Key
     && mkdir -p /backups/mysql \
